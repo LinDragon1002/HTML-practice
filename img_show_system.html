@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>圖片展示系統</title>
+
+    <style>
+        .btn-group> button{
+            border-radius: 25px;
+            background: #fff;
+            border: none;
+            cursor: pointer;
+            text-align: center;
+        }
+        .btn-group > button:active{
+            background: #24aeaa;
+            color:#fff;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="btn-group">
+        <button class="active">全部圖片</button>
+        <button class="">自然風景圖</button>
+        <button class="">城市風景圖</button>
+    </div>
+
+    <main></main>
+
+    <script>
+        const btns = document.querySelectorAll('.btn-group>button');
+        let filter = '全部圖片'
+        btns.forEach(btn => {
+            btn.addEventListener('click', function(){
+                document.querySelector('button.active').classList.remove('active')
+                this.classList.add('active')
+                filter = this.textContent
+                render()
+            })
+        });
+
+        const main = document.querySelector('main')
+        const types = {
+            '自然風景圖': [2,3,4,5,8],
+            '城市風景圖': [1,6,7]
+        }
+        function render(){
+            for (let i = 1; i <= 8; i++){
+                if (filter === '全部圖片' || types[filter].includes(i))
+                main.innerHTML = `<img src="./pic/img (${i}).jpg" alt="">`
+            }
+        }
+        render()
+
+    </script>
+</body>
+</html>

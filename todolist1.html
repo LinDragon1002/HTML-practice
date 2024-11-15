@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TODOLIST</title>
+    <script src='./js/jquery-3.7.1.min.js'></script>
+
+    <style>
+        li {
+            display: flex;
+            align-items: center;
+        }
+        input[type="checkbox"]:checked + label{
+            text-decoration: line-through;
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <h1>TODO LIST</h1>
+        <input type="text" value="睡覺">
+        <button>新增</button>
+        <ul>
+            <li>
+                <input type="checkbox" name="" id="c1">
+                <label for="c1">text</label>
+                <button>X</button>
+                <button>修改</button>
+            </li>
+        </ul>
+    </main>
+    <script>
+        $(document).ready(function(){
+            let idCount = 0;
+            $("button").click(function(){
+                let text = $("input").val();
+                $('ul').append(`
+                    <li>
+                        <input type="checkbox" name="" id="${++idCount}">
+                        <label for="${idCount}">${text}</label>
+                        <button>修改</button>
+                        <button>X</button>
+                    </li>
+                `)
+
+            })
+
+        })
+        
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gird 2 教學</title>
+    <style>
+        .container {
+            width: 550px;
+            height: 550px;
+
+            background: #101d47;
+            border: 10px solid #101d47;
+            /* place-items: center; */
+            display: grid;
+            grid-auto-columns: 1fr;
+            /* 指定隱式創建列的大小。每列將佔用可用空間的一部分。 */
+            grid-auto-rows: 1fr;
+            /* 指定隱式創建行的大小。每行將佔用可用空間的一部分。 */
+            gap: 10px;
+            /* 定義網格項目之間的間隙，包括行和列。 */
+        }
+
+        .container>div {
+            color: #fff;
+            outline: 2px solid #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .A1 {
+            /* grid:列-開始 / 欄-開始 / 列-結束 / 欄-結束 */
+            grid-column: 1 / 3; /* 從第1列跨到第3列 */
+            grid-row: 1 / 3; /* 從第1行跨到第3行 */
+            background-color: #ff6347;
+        }
+
+        .A2 {
+            grid-column: 3 / 4; /* 從第3列跨到第4列 */
+            grid-row: 1 / 3; /* 從第1行跨到第3行 */
+            background-color: #4682b4;
+        }
+
+        .A3 {
+            grid-column: 1 / 2; /* 從第1列跨到第2列 */
+            grid-row: 3 / 4; /* 從第3行跨到第4行 */
+            background-color: #3cb371;
+        }
+
+        .cat {
+            grid-row: 3 / 7; /* 從第3行跨到第7行 */
+            grid-column: 2 / 4; /* 從第2列跨到第4列 */
+        }
+
+        .B1 {
+            grid-row: 4 / 7; /* 從第4行跨到第7行 */
+            background-color: #9a9148;
+            grid-column: 1 / 2; /* 從第1列跨到第2列 */
+        }
+
+        .E123 {
+            grid-column: 1 / 4; /* 從第1列跨到第4列 */
+            grid-row: 7 / 9; /* 從第7行跨到第9行 */
+            background-color: #e07e8c;
+        }
+        .B2{
+            background-color: #da70d6;
+        }
+        .C1{
+            background-color: #9370db;
+        }
+        .C2{
+            background-color: #6495ed;
+        }
+        .D1{
+            background-color: #58a189;
+        }
+        .D2{
+            background-color: #dc143c;
+        }
+        .D3{
+            background-color: #87cefa;
+        }
+        .F1{
+            background-color: #20b2aa;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="A1">A1</div>
+        <div class="A2">A2</div>
+        <div class="A3">A3</div>
+        <div class="cat"></div>
+        <div class="B1">B1</div>
+        <div class="E123">E1,E2,E3</div>
+        <div class="B2">B2</div>
+        <div class="C1">C1</div>
+        <div class="C2">C2</div>
+        <div class="D1">D1</div>
+        <div class="D2">D2</div>
+        <div class="D3">D3</div>
+        <div class="F1">F1</div>
+    </div>
+</body>
+
+</html>

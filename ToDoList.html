@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToDoList</title>
+    <script src="./js/jquery-3.7.1.min.js"></script>
+    <!-- <link rel="stylesheet" href="./js/jquery-3.6.1.min.js"> -->
+    <style>
+        li{
+            display: flex;
+            align-items: center;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="text" value="请输入代辦事項">
+    <button>新增</button>
+    <ul>
+        <li>
+            <input type="checkbox" name="" id="">
+            <div>text</div>
+            <button>X</button>
+        </li>
+    </ul>
+
+
+    <script>
+        $().ready
+        $("button").click(function(){
+            let text = $("input").val();
+            $('ul').append(`
+                 <li>
+                    <input type="checkbox" name="" id="">
+                    <div>${text}</div>
+                </li>
+            `)
+        })
+
+    </script>
+</body>
+</html>

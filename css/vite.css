@@ -1,0 +1,113 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", Segoe UI Symbol, "Noto Color Emoji";
+}
+
+nav{
+    padding: 16px;
+    background-color: #1f2937;
+}
+
+nav div{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 60px;
+}
+
+nav h1{
+    color: #fff;
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+nav a{
+    color: #fff;
+    text-decoration-line: none;
+    text-align: center;
+}
+
+nav ul{
+    display: flex;
+    gap: 20px;
+    flex-direction: row;
+    padding-right: 20px;
+    list-style-type: none;
+}
+
+form{
+    display: flex;
+}
+
+nav input{
+    padding: 8px;
+    border-radius: 5px 0 0 5px;
+    border: none;
+}
+
+nav button{
+    color: #fff;
+    border: none;
+    background-color: #3b82f6;
+    border-radius: 0 5px 5px 0;
+    padding: 8px;
+}
+
+.set1>div{
+    margin-top: 20px;
+    background-color: #e5e7eb;
+    padding: 16px;
+}
+.set1 p{
+    font-size: large;
+    line-height: 30px;
+}
+
+.set1>div:hover{
+    opacity: 50%;
+}
+
+.set1 article{
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.set1 article div{
+    padding: 16px;
+}
+
+.set1 article img{
+    height: 12rem;
+    overflow-x: auto;
+}
+
+.img1{
+    object-fit: cover;
+    background-color: #bbf7d0;
+}
+
+.img2{
+    background-color: #bfdbfe;
+}
+
+.img3{
+    background-color: #fbcfe8;
+}
+
+.set2{
+    margin-top: 20px;
+}
+
+.set2 article{
+    display: flex;
+}
+
+.set2 article>div{
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),var(--tw-ring-shadow, 0 0 #0000),var(--tw-shadow);
+}

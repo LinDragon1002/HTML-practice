@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>簡易計數器</title>
+    <style>
+        .add,.ease{
+            transform: rotate(-90deg);
+        }
+    </style>
+</head>
+<body>
+    <h2>簡易計數器</h2>
+    <!-- <button>⬆️</button> -->
+    <button class="add">&gt;</button>
+    <div class="show">0</div>
+    <!-- <button>⬇️</button> -->
+    <button class="ease">&lt;</button>
+
+
+    <script>
+        const addBtn = document.querySelector('.add')
+        const easeBtn = document.querySelector('.ease')
+        const show = document.querySelector('.show')
+
+        addBtn.addEventListener('click', function(){
+            show.textContent = parseInt(show.textContent) + 1
+        })
+
+        easeBtn.addEventListener('click', function(){
+            show.textContent = parseInt(show.textContent) - 1
+        })
+    </script>
+</body>
+</html>
