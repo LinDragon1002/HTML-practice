@@ -1,22 +1,43 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zn-cn">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>圖片展示系統</title>
 
     <style>
-        .btn-group> button{
-            border-radius: 25px;
-            background: #fff;
+        .btn-group{
+            text-align: center;
+            margin: 30px 0;
+        }
+
+        .btn-group > button{
+            border-radius: 50px;
+            background: #acacac;
+            padding: 10px;
             border: none;
             cursor: pointer;
-            text-align: center;
         }
-        .btn-group > button:active{
+
+        .btn-group > button.active{
             background: #24aeaa;
             color:#fff;
         }
+
+        main img{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        main{
+            display: flex;
+            justify-content: center;
+
+            /* height: ; */
+            gap: 20px;
+        }
+
     </style>
 </head>
 <body>
@@ -30,10 +51,17 @@
     <main></main>
 
     <script>
-        const btns = document.querySelectorAll('.btn-group>button');
+        const btns = document.querySelectorAll('.btn-group > button');
+        const main = document.querySelector('main')
         let filter = '全部圖片'
+        const types = {
+            '自然風景圖': [2,3,4,5,8],
+            '城市風景圖': [1,6,7]
+        }
+
         btns.forEach(btn => {
             btn.addEventListener('click', function(){
+                main.innerHTML = ""
                 document.querySelector('button.active').classList.remove('active')
                 this.classList.add('active')
                 filter = this.textContent
@@ -41,15 +69,11 @@
             })
         });
 
-        const main = document.querySelector('main')
-        const types = {
-            '自然風景圖': [2,3,4,5,8],
-            '城市風景圖': [1,6,7]
-        }
         function render(){
             for (let i = 1; i <= 8; i++){
-                if (filter === '全部圖片' || types[filter].includes(i))
-                main.innerHTML = `<img src="./pic/img (${i}).jpg" alt="">`
+                if (filter === '全部圖片' || types[filter].includes(i)){
+                    main.innerHTML += `<div class="${i}"><img src="./pic/img (${i}).jpg" alt=""></div>`
+                }
             }
         }
         render()

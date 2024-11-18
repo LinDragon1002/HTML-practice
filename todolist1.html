@@ -12,7 +12,8 @@
             display: flex;
             align-items: center;
         }
-        input[type="checkbox"]:checked + label{
+
+        input[type="checkbox"]:checked+label {
             text-decoration: line-through;
         }
     </style>
@@ -21,35 +22,51 @@
 <body>
     <main>
         <h1>TODO LIST</h1>
-        <input type="text" value="睡覺">
-        <button>新增</button>
+        <input type="text" placeholder="text">
+        <button class="news">新增</button>
         <ul>
-            <li>
-                <input type="checkbox" name="" id="c1">
-                <label for="c1">text</label>
-                <button>X</button>
-                <button>修改</button>
-            </li>
+            <li></li>
         </ul>
     </main>
+
     <script>
-        $(document).ready(function(){
-            let idCount = 0;
-            $("button").click(function(){
-                let text = $("input").val();
-                $('ul').append(`
-                    <li>
-                        <input type="checkbox" name="" id="${++idCount}">
-                        <label for="${idCount}">${text}</label>
-                        <button>修改</button>
-                        <button>X</button>
-                    </li>
-                `)
+        const btn = document.querySelector(".news")
+        const inp = document.querySelector("input")
+        const ul = document.querySelector("ul")
+        let c1 = 1
 
-            })
+        btn.addEventListener("click", addinps)
+        function addinps() {
+            ul.innerHTML += `
+                <li id="li-${c1}">
+                    <input type="checkbox" name="c${c1}">
+                    <label for="c${c1}">${inp.value}</label>
+                    <button class="clear" data-id="li-${c1}">X</button>
+                    <button class="correct" data-id="li-${c1}">修改</button>
+                </li>
+            `
+            inp.value = ""
+            clear()
+            c1++
+        }
 
-        })
-        
+        function correct() {
+            const correctBtns = document.querySelectorAll(".correct")
+            // correctBtns.addEventListener("click", function(){
+
+            // })
+        }
+
+        function clear() {
+            const clearBtns = document.querySelectorAll(".clear")
+            for (const btn of clearBtns) {
+                btn.addEventListener("click", function () {
+                    const li = document.querySelector(`#${btn.dataset.id}`)
+                    li.remove()
+                })
+            }
+        }
+
     </script>
 </body>
 
