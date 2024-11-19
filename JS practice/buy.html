@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>購物車</title>
+    <style>
+        .set1{
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            width: 90%;
+            margin: 0 auto;
+        }
+
+        .card{
+            border: 2px;
+            background-color: #929292;
+            width: 25%;
+            overflow: hidden;
+        }
+
+        .card h3{
+            text-align: center;
+        }
+
+        .NT{
+            background-color: #292929;
+            text-align: center;
+            border-radius: 50px;
+            color: white;
+            width: 30%;
+            margin: 10px;
+            padding: 5px;
+        }
+
+        .img{
+            height: 40%;
+        }
+
+        .img > img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .many{
+            margin: 10px;
+            text-align: center;
+            padding: 10px;
+        }
+
+        .many button{
+            background-color: #b1b1b1;
+            color: #000;
+            border-radius: 5px;
+        }
+
+        .card p{
+            margin: 10px;
+        }
+
+        .set2{
+            width: 70%;
+            margin: 0 auto;
+        }
+
+    </style>
+</head>
+<body>
+    <section class="set1">
+        <div class="card">
+            <div class="img"><img src="/pic/img (1).jpg" alt=""></div>
+            <h3>招牌波羅麵包</h3>
+            <div class="NT">NT$10元</div>
+            <div class="many">
+                <button>-</button>
+                <input type="number">
+                <button>+</button>
+            </div>
+            <p>不知道哪個不用心的人打錯字，而不小心亂入的鍋貼君，希望最後可以讓他回到安心的家(反正最後會被吃掉....)</p>
+        </div>
+        <div class="card">
+            <div class="img"><img src="/pic/img (2).jpg" alt=""></div>
+            <h3>灰色的波羅麵包</h3>
+            <div class="NT">NT$100元</div>
+            <div class="many">
+                <button>-</button>
+                <input type="number">
+                <button>+</button>
+            </div>
+            <p>像這款灰色波羅麵包；我就是逛商城的時侯看到的；當下就試用了相關的功能很滿意。所以心裡就把型號記了下來</p>
+        </div>
+        <div class="card">
+            <div class="img"><img src="/pic/img (3).jpg" alt=""></div>
+            <h3>神秘的菠蘿麵包</h3>
+            <div class="NT">NT$300元</div>
+            <div class="many">
+                <button>-</button>
+                <input type="number">
+                <button>+</button>
+            </div>
+            <p>實用起來真的很滿意。而且如果買到不良品也有退貨的服務；我根本也不憺心^^</p>
+        </div>
+    </section>
+    <section class="set2">
+        <h3>總計0元</h3>
+        <button>送出結帳</button>
+        <button>取消</button>
+    </section>
+</body>
+</html>
