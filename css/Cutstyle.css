@@ -2,3 +2,73 @@
     margin: 0;
     padding: 0;
 }
+html{
+    scroll-padding-top: 100px;
+}
+
+main{
+    margin: 10%;
+}
+
+.set1{
+    width: 100%;
+    height: 80vh;
+    display: grid;
+    grid-template-columns: 70% 30%;
+}
+
+.set1text h1{
+    font-size: 4.5rem;
+    font-weight: bold;
+}
+
+.set1text p{
+    width: 80%;
+    font-weight: bold;
+}
+
+.set1btn{
+    background-color: #ff8331;
+    color: #fff;
+}
+
+.set1btnbox > button{
+    padding: 0.5rem 1.2rem;
+    font-weight: bold;
+}
+
+.set1btnbox > button:hover{
+    box-shadow: 4px 0 5px #00000089;
+    transform: 2s;
+    scale: 1.1;
+}
+
+.set1img{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.set2{
+    text-align: center;
+}
+
+.set2card{
+    margin-top: 5%;
+    display: grid;
+    grid-template-columns: repeat(3,30%);
+    gap: 2%;
+    min-height: 50vh;
+    justify-content: space-around;
+}
+
+.set2img{
+    overflow: hidden;
+    object-fit: cover;
+}
+
+.set2img > img{
+    height: 100%;
+    width: 100%;
+}
