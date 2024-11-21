@@ -1,0 +1,44 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+html{
+    scroll-padding-top: 100px;
+}
+
+.set1{
+    background-color: #d5d5d5;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5%;
+}
+
+form{
+    background-color: #a6a6a6;
+    border-radius: 5%;
+    padding: 5% 10%;
+}
+
+input{
+    width: 100%;
+    border-radius: 3%;
+    border: none;
+    padding: 0 3%;
+}
+
+form > button{
+    background-color: #fff;
+    border: none;
+    width: 100%;
+    border-radius: 3%;
+    padding: 2%;
+}
+
+form > button:hover{
+    background-color: #ffb947;
+    color: white;
+}
