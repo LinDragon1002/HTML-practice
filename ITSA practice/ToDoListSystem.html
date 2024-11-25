@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>代辦事件管理</title>
+</head>
+<style>
+    h1{
+        text-align: center;
+    }
+    .box{
+        display: grid;
+        grid-template-columns: repeat(2,50%);
+
+    }
+    .nonefinish{
+        border: 2px solid red;
+        padding: 20px 5px;
+    }
+    .finish{
+        border: 2px solid blue;
+        padding: 20px 5px;
+    }
+
+    .finish > .finishbtn {
+        display: none;
+    }
+</style>
+<body>
+    <h1>代辦事件管理</h1>
+    <section>
+        <form action="">
+            <input type="text" name="" placeholder="標題" id="title">
+            <input type="text" name="" placeholder="事件描述" id="content">
+            <input type="datetime-local" name="" id="datetime">
+            <button type="button" id="sumbit" onclick="newlist()">新增</button>
+        </form>
+    </section>
+    <h2>事件列表</h2>
+    <section class="box">
+        <div class="nonefinish">
+            <div>未完成</div>
+        </div>
+        <div class="finish">
+            <div>完成</div>
+        </div>
+    </section>
+
+    <p id="demo"></p>
+    <script src="ToDoListSystem.js"></script>
+</body>
+</html>
