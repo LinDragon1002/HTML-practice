@@ -53,6 +53,10 @@
             padding: 10px;
         }
 
+        .many > input {
+            text-align: center;
+        }
+
         .many button{
             background-color: #b1b1b1;
             color: #000;
@@ -77,9 +81,9 @@
             <h3>招牌波羅麵包</h3>
             <div class="NT">NT$10元</div>
             <div class="many">
-                <button class="reducebtn">-</button>
-                <div class="show">0</div>
-                <button class="addbtn" onclick="reducenum()">+</button>
+                <button class="reduce">-</button>
+                <input class="show" type="number" value="0">
+                <button class="add">+</button>
             </div>
             <p>不知道哪個不用心的人打錯字，而不小心亂入的鍋貼君，希望最後可以讓他回到安心的家(反正最後會被吃掉....)</p>
         </div>
@@ -88,9 +92,9 @@
             <h3>灰色的波羅麵包</h3>
             <div class="NT">NT$100元</div>
             <div class="many">
-                <button class="reducebtn">-</button>
-                <div class="show">0</div>
-                <button class="addbtn" onclick="reducenum()">+</button>
+                <button class="reduce">-</button>
+                <input class="show" type="number" value="0">
+                <button class="add">+</button>
             </div>
             <p>像這款灰色波羅麵包；我就是逛商城的時侯看到的；當下就試用了相關的功能很滿意。所以心裡就把型號記了下來</p>
         </div>
@@ -99,9 +103,9 @@
             <h3>神秘的菠蘿麵包</h3>
             <div class="NT">NT$300元</div>
             <div class="many">
-                <button class="reducebtn">-</button>
-                <div class="show">0</div>
-                <button class="addbtn" onclick="reducenum()">+</button>
+                <button class="reduce">-</button>
+                <input class="show" type="number" value="0">
+                <button class="add">+</button>
             </div>
             <p>實用起來真的很滿意。而且如果買到不良品也有退貨的服務；我根本也不憺心^^</p>
         </div>
@@ -112,16 +116,37 @@
         <button>取消</button>
     </section>
     <script>
-        const reducebtn = document.querySelectorAll(".reducebtn")
-        const addbtn = document.querySelectorAll(".addbtn")
-        const show_num = document.querySelectorAll(".show")
+        const reducebtn = document.querySelectorAll(".reduce");
+        const addbtn = document.querySelectorAll(".add");
+        const show_num = document.querySelectorAll(".show");
+        let tot = 0;
+        const items_price = [10,100,300]
 
-        function reducenum(){
-            show_num.textContent = parseInt(show_num.textContent) - 1
-        }
-        addbtn.addEventListener('click', function(){
-            show_num.textContent = parseInt(show_num.textContent) + 1
-        })
+        //尋找每一個class的按鈕
+        reducebtn.forEach((btn,index) => {
+            btn.addEventListener('click', function(){
+                const current_num = parseInt(show_num[index].value);
+                if (current_num > 0){
+                    show_num[index].value = current_num - 1;
+                    tot -= 1 * parseInt(items_price[index]);
+                    show_tot();
+                }
+            });
+        });
+
+        addbtn.forEach((btn,index) => {
+            btn.addEventListener('click', function(){
+                const current_num = parseInt(show_num[index].value);
+                show_num[index].value = current_num + 1;
+                tot += 1 * parseInt(items_price[index]);
+                show_tot();
+            });
+        });
+
+        function show_tot (){
+            const show_tot = document.querySelector(".set2 > h3")
+            show_tot.innerHTML = `總計${tot}元`;
+        };
     </script>
 </body>
 </html>
