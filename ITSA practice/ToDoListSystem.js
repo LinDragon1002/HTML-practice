@@ -10,9 +10,9 @@ function newlist() {
     nonefinish.innerHTML +=
     `
     <ul class="data-id${++id}">
-        <strong><li class="title">${title}</li></strong>
-        <div class="content">${content}</div>
-        <i><div class="datatime">${datetime}</div></i>
+        <li class="title"><strong>${title}</strong></li>
+        <li class="content">${content}</li>
+        <li class="datatime"><i>${datetime}</i></li>
         <button class="removebtn" onclick="removelist(${id})">刪除</button>
         <button class="finishbtn" onclick="finishlist(${id})">完成</button>
     </ul>
@@ -28,6 +28,7 @@ function finishlist(id){
     const finish = document.querySelector(".finish")
     const ul = document.querySelector(`.data-id${id}`)
     finish.append(ul)
+    ul.lastChild.remove(finishbtn)
 }
 
 
