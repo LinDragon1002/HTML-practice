@@ -82,7 +82,7 @@
             <div class="NT">NT$10元</div>
             <div class="many">
                 <button class="reduce">-</button>
-                <input class="show" type="number" value="0">
+                <input class="show" value="0">
                 <button class="add">+</button>
             </div>
             <p>不知道哪個不用心的人打錯字，而不小心亂入的鍋貼君，希望最後可以讓他回到安心的家(反正最後會被吃掉....)</p>
@@ -93,7 +93,7 @@
             <div class="NT">NT$100元</div>
             <div class="many">
                 <button class="reduce">-</button>
-                <input class="show" type="number" value="0">
+                <input class="show" value="0">
                 <button class="add">+</button>
             </div>
             <p>像這款灰色波羅麵包；我就是逛商城的時侯看到的；當下就試用了相關的功能很滿意。所以心裡就把型號記了下來</p>
@@ -104,7 +104,7 @@
             <div class="NT">NT$300元</div>
             <div class="many">
                 <button class="reduce">-</button>
-                <input class="show" type="number" value="0">
+                <input class="show" value="0">
                 <button class="add">+</button>
             </div>
             <p>實用起來真的很滿意。而且如果買到不良品也有退貨的服務；我根本也不憺心^^</p>
@@ -112,40 +112,76 @@
     </section>
     <section class="set2">
         <h3>總計0元</h3>
-        <button>送出結帳</button>
-        <button>取消</button>
+        <button class="sumbit" onclick="sumbitbtn()">送出結帳</button>
+        <button onclick="removeall()">取消</button>
     </section>
     <script>
         const reducebtn = document.querySelectorAll(".reduce");
         const addbtn = document.querySelectorAll(".add");
         const show_num = document.querySelectorAll(".show");
         let tot = 0;
-        const items_price = [10,100,300]
+        const items_price = [10,100,300];
+        let amount = Array.from({ length: show_num.length }, () => 0);
+        console.log(amount);
 
         //尋找每一個class的按鈕
         reducebtn.forEach((btn,index) => {
             btn.addEventListener('click', function(){
-                const current_num = parseInt(show_num[index].value);
-                if (current_num > 0){
-                    show_num[index].value = current_num - 1;
-                    tot -= 1 * parseInt(items_price[index]);
-                    show_tot();
-                }
+                amount[index] = Math.max(0, amount[index] - 1);
+                show_num[index].value = amount[index];
+                console.log(amount);
+                show_tot();
             });
         });
 
         addbtn.forEach((btn,index) => {
             btn.addEventListener('click', function(){
-                const current_num = parseInt(show_num[index].value);
-                show_num[index].value = current_num + 1;
-                tot += 1 * parseInt(items_price[index]);
+                amount[index] += 1;
+                show_num[index].value = amount[index];
+                console.log(amount);
                 show_tot();
             });
         });
 
+        show_num.forEach((inps,index) => {
+            inps.addEventListener('input', function(){
+                // if (inps[])
+                tot += inps.value * parseInt(items_price[index]);
+                amount[index] = parseInt(inps.value);
+                console.log(amount);
+                show_tot();
+            })
+        })
+
         function show_tot (){
-            const show_tot = document.querySelector(".set2 > h3")
-            show_tot.innerHTML = `總計${tot}元`;
+            tot = 0;
+            for (i=0; i < amount.length; i++){
+                tot += amount[i] * items_price[i];
+            };
+
+            const show_tot = document.querySelector(".set2 > h3");
+            if (tot >= 1000){
+                show_tot.innerHTML = `總計${Math.floor(tot/1000)},${tot.toString().slice(-3)}元`;
+            }else{
+                show_tot.innerHTML = `總計${tot}元`;
+            }
+        };
+
+        function sumbitbtn (){
+            if (tot >= 1000){
+                alert(`總計${Math.floor(tot/1000)},${tot.toString().slice(-3)}元`);
+            }else{
+                alert(`總計${tot}元`)
+            }
+        };
+
+        function removeall (){
+            show_num.forEach(index => {
+                index.value = 0;
+                amount[index] = 0;
+                tot = 0;
+                show_tot();
+            });
         };
     </script>
 </body>
