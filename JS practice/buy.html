@@ -122,14 +122,12 @@
         let tot = 0;
         const items_price = [10,100,300];
         let amount = Array.from({ length: show_num.length }, () => 0);
-        console.log(amount);
 
         //尋找每一個class的按鈕
         reducebtn.forEach((btn,index) => {
             btn.addEventListener('click', function(){
                 amount[index] = Math.max(0, amount[index] - 1);
                 show_num[index].value = amount[index];
-                console.log(amount);
                 show_tot();
             });
         });
@@ -138,20 +136,20 @@
             btn.addEventListener('click', function(){
                 amount[index] += 1;
                 show_num[index].value = amount[index];
-                console.log(amount);
                 show_tot();
             });
         });
 
         show_num.forEach((inps,index) => {
             inps.addEventListener('input', function(){
-                // if (inps[])
                 tot += inps.value * parseInt(items_price[index]);
                 amount[index] = parseInt(inps.value);
-                console.log(amount);
+                if (isNaN(amount[index]) || inps.value < 0){
+                    amount[index] = 0;
+                }
                 show_tot();
-            })
-        })
+            });
+        });
 
         function show_tot (){
             tot = 0;
@@ -176,12 +174,16 @@
         };
 
         function removeall (){
+            console.log(amount)
             show_num.forEach(index => {
                 index.value = 0;
-                amount[index] = 0;
-                tot = 0;
-                show_tot();
             });
+            amount.forEach((value,indexs) => {
+                amount[indexs] = 0;
+            })
+            console.log(amount);
+            tot = 0;
+            show_tot();
         };
     </script>
 </body>
