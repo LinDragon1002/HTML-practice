@@ -7,12 +7,11 @@
     <style>
         section{
             display: grid;
-            grid-template-columns: 20% 80%;
-            gap: 5px;
+            grid-template-columns: 20% 79%;
+            gap: 1%;
             border: 1px solid black;
-            width: 100%;
             height: 500px;
-            padding: 5px;
+            padding: 0.5%;
         }
         .buttonbox{
             display: flex;
@@ -34,6 +33,17 @@
         .set1 {
             border: 1px solid black;
         }
+        .set2{
+            border: 1px solid black;
+            margin: 1%;
+        }
+        ul{
+            display: grid;
+            grid-template-columns: 90% 10%;
+        }
+        ul li{
+            list-style: none;
+        }
     </style>
 </head>
 <body>
@@ -46,8 +56,18 @@
             <button class="" type="button">查詢筆記</button>
         </div>
         <div class="set1">
-            <div class="active">
+            <div class="set2 active">
                 <h1>筆記清單</h1>
+                <hr>
+                <ul>
+                    <li>
+                        sfjwoef
+                        <button class="">閱覽</button>
+                        <button class="">修改</button>
+                        <button class="">刪除</button>
+                        <hr>
+                    </li>
+                </ul>
             </div>
         </div>
     </section>
