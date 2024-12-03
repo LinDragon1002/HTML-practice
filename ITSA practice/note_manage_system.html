@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-Hant-TW">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -37,12 +37,47 @@
             border: 1px solid black;
             margin: 1%;
         }
+        .set2 > div {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-right: 5%;
+        }
+        .set2 div h1 {
+            margin-left: 10px;
+        }
+        .set2 div h3{
+            margin-left: 60%;
+        }
+        select{
+            width: 15%;
+            padding: 10px;
+        }
         ul{
-            display: grid;
-            grid-template-columns: 90% 10%;
+            padding-left: 10px;
         }
         ul li{
             list-style: none;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-right: 30%;
+        }
+        li div button {
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            margin-right: 5px;
+            border-radius: 10px;
+        }
+        .view,.check{
+            background-color: #eec007;
+            font-weight: bolder;
+        }
+        .delete {
+            background-color: red;
+            color: white;
+            font-weight: bolder;
         }
     </style>
 </head>
@@ -50,26 +85,46 @@
     <h1>筆記管理系統</h1>
     <section>
         <div class="buttonbox">
-            <button class="" type="button">筆記清單</button>
-            <button class="" type="button">新增分類</button>
-            <button class="" type="button">新增筆記</button>
-            <button class="" type="button">查詢筆記</button>
+            <button class="" type="button" onclick="leftbtns()">筆記清單</button>
+            <button class="" type="button" onclick="leftbtns()">新增分類</button>
+            <button class="" type="button" onclick="leftbtns()">新增筆記</button>
+            <button class="" type="button" onclick="leftbtns()">查詢筆記</button>
         </div>
         <div class="set1">
             <div class="set2 active">
-                <h1>筆記清單</h1>
+                <div>
+                    <h1>筆記清單</h1>
+                    <h3 class="">分類：</h3>
+                    <select name="" id="">
+                        <option value="">全部</option>
+                    </select>
+                </div>
                 <hr>
                 <ul>
                     <li>
-                        sfjwoef
-                        <button class="">閱覽</button>
-                        <button class="">修改</button>
-                        <button class="">刪除</button>
-                        <hr>
+                        <div>sfjwoef</div>
+                        <div>
+                            <button class="view">閱覽</button>
+                            <button class="check">修改</button>
+                            <button class="delete">刪除</button>
+                        </div>
                     </li>
+                    <hr>
                 </ul>
             </div>
+            <div class="set3"></div>
+            <div class="set4"></div>
+            <div class="set5"></div>
         </div>
     </section>
+    <script>
+        btns = document.querySelectorAll('button')
+
+        function leftbtns(){
+            btns.forEach(index => {
+                document.querySelector('.active').classList.remove('.active')
+            });
+        }
+    </script>
 </body>
 </html>
