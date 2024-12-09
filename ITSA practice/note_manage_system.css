@@ -1,0 +1,159 @@
+section{
+    display: grid;
+    grid-template-columns: 20% 79%;
+    gap: 1%;
+    border: 1px solid black;
+    height: 500px;
+    padding: 0.5%;
+}
+
+.tac{
+    text-align: center;
+}
+
+.buttonbox{
+    display: flex;
+    align-items: center;
+    padding: 10%;
+    flex-direction: column;
+    border: 1px solid black;
+}
+
+.buttonbox > button {
+    background-color: #eec007;
+    width: 100px;
+    padding: 5%;
+    font-weight: bolder;
+    cursor: pointer;
+    border: none;
+    margin-bottom: 5%;
+}
+
+.set1 {
+    border: 1px solid black;
+}
+
+.set2,.set3,.set4,.set5{
+    display: none;
+}
+
+.set2{
+    border: 1px solid black;
+    margin: 1%;
+}
+
+.set2 > div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-right: 5%;
+}
+
+.set2 div h1 {
+    margin-left: 10px;
+}
+
+.set2 div h3{
+    margin-left: 60%;
+}
+
+
+
+
+
+.checkbox {
+    border: 1px solid black;
+    margin: 10px;
+    padding: 30px 10px;
+}
+
+.checkbox > span {
+    font-weight: bolder;
+}
+
+
+
+select{
+    width: 15%;
+    padding: 10px;
+}
+
+ul{
+    padding-left: 10px;
+}
+
+ul li{
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-right: 30%;
+}
+
+li div button {
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    margin-right: 5px;
+    border-radius: 10px;
+}
+
+.view,.check{
+    background-color: #eec007;
+    font-weight: bolder;
+}
+
+.delete {
+    background-color: red;
+    color: white;
+    font-weight: bolder;
+}
+
+
+
+h2 {
+    font-weight: normal;
+}
+
+.settext {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 40px;
+}
+
+input {
+    height: 30px;
+    width: 80%;
+    padding: 0 10px;
+}
+
+.active {
+    display: block;
+}
+
+.df {
+    display: flex;
+    justify-content: center;
+}
+
+.btn {
+    background-color: #eec007;
+    padding: 10px;
+    border-radius: 20%;
+    font-weight: bolder;
+    cursor: pointer;
+    border: none;
+    margin-bottom: 5%;
+}
+
+.set5btn {
+    background-color: #898989;
+    color: white;
+    margin-top: 5px;
+    padding: 10px;
+    border-radius: 20%;
+    font-weight: bolder;
+    cursor: pointer;
+    border: none;
+}

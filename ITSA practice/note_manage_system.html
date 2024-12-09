@@ -4,94 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>筆記管理系統</title>
-    <style>
-        section{
-            display: grid;
-            grid-template-columns: 20% 79%;
-            gap: 1%;
-            border: 1px solid black;
-            height: 500px;
-            padding: 0.5%;
-        }
-        .buttonbox{
-            display: flex;
-            align-items: center;
-            padding: 10%;
-            flex-direction: column;
-            border: 1px solid black;
-        }
-        .buttonbox > button {
-            background-color: #eec007;
-            padding: 2px;
-            width: 100px;
-            padding: 5%;
-            font-weight: bolder;
-            cursor: pointer;
-            border: none;
-            margin-bottom: 5%;
-        }
-        .set1 {
-            border: 1px solid black;
-        }
-        .set2{
-            border: 1px solid black;
-            margin: 1%;
-        }
-        .set2 > div {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-right: 5%;
-        }
-        .set2 div h1 {
-            margin-left: 10px;
-        }
-        .set2 div h3{
-            margin-left: 60%;
-        }
-        select{
-            width: 15%;
-            padding: 10px;
-        }
-        ul{
-            padding-left: 10px;
-        }
-        ul li{
-            list-style: none;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-right: 30%;
-        }
-        li div button {
-            border: none;
-            padding: 10px;
-            cursor: pointer;
-            margin-right: 5px;
-            border-radius: 10px;
-        }
-        .view,.check{
-            background-color: #eec007;
-            font-weight: bolder;
-        }
-        .delete {
-            background-color: red;
-            color: white;
-            font-weight: bolder;
-        }
-    </style>
+    <link rel="stylesheet" href="./note_manage_system.css">
 </head>
 <body>
     <h1>筆記管理系統</h1>
     <section>
         <div class="buttonbox">
-            <button class="" type="button" onclick="leftbtns()">筆記清單</button>
-            <button class="" type="button" onclick="leftbtns()">新增分類</button>
-            <button class="" type="button" onclick="leftbtns()">新增筆記</button>
-            <button class="" type="button" onclick="leftbtns()">查詢筆記</button>
+            <button class="" type="button" onclick="leftbtns(2)">筆記清單</button>
+            <button class="" type="button" onclick="leftbtns(3)">新增分類</button>
+            <button class="" type="button" onclick="leftbtns(4)">新增筆記</button>
+            <button class="" type="button" onclick="leftbtns(5)">查詢筆記</button>
         </div>
         <div class="set1">
-            <div class="set2 active">
+            <div class="set2">
                 <div>
                     <h1>筆記清單</h1>
                     <h3 class="">分類：</h3>
@@ -112,18 +37,72 @@
                     <hr>
                 </ul>
             </div>
-            <div class="set3"></div>
-            <div class="set4"></div>
-            <div class="set5"></div>
+            <div class="set3 tac">
+                <h2>新增分類</h2>
+                <div class="settext">
+                    <p>輸入分類:</p>
+                    <input type="text" name="" id="" placeholder="請輸入分類名稱">
+                </div>
+                <button type="button" class="btn">確認</button>
+            </div>
+            <div class="set4 tac">
+                <h2>新增/修改筆記</h2>
+                <div>
+                    <div>
+                        <p>選擇筆記分類:</p>
+                    </div>
+                    <div class="">
+                        <select name="" id="">
+                            <option value="">全部</option>
+                        </select>
+                        <select name="" id="">
+                            <option value="">全部</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="df settext">
+                    <div>筆記標題:</div>
+                    <input type="text" name="" id="" placeholder="請輸入筆記標題">
+                </div>
+                <div class="df settext">
+                    <p>筆記內容:</p>
+                    <textarea name="" id="" placeholder="請輸入筆記內容"></textarea>
+                </div>
+                <button type="button" class="btn">確認</button>
+            </div>
+            <div class="set5 active">
+                <h2 class="tac">查詢筆記</h2>
+                <div class="settext">
+                    <div>輸入筆記標題:</div>
+                    <input type="text" name="" id="" placeholder="請輸入查詢筆記標題關鍵字">
+                </div>
+                <div class="tac">
+                    <button type="button" class="set5btn">查詢</button>
+                </div>
+                <div class="checkbox">
+                    <span>標題名稱</span>
+                    <hr>
+                    <ul>
+                        <li>
+                            <div>sfjwoef</div>
+                            <div>
+                                <button class="view">閱覽</button>
+                                <button class="check">修改</button>
+                                <button class="delete">刪除</button>
+                            </div>
+                        </li>
+                        <hr>
+                    </ul>
+                </div>
+            </div>
         </div>
     </section>
     <script>
-        btns = document.querySelectorAll('button')
+        btns = document.querySelectorAll('.buttonbox > button')
 
-        function leftbtns(){
-            btns.forEach(index => {
-                document.querySelector('.active').classList.remove('.active')
-            });
+        function leftbtns(pageIndex){
+            document.querySelector('.active').classList.remove('active')
+            document.querySelector('.set' + pageIndex).classList.add('active')
         }
     </script>
 </body>
