@@ -27,50 +27,48 @@
                 <hr>
                 <ul>
                     <li>
-                        <div>sfjwoef</div>
-                        <div>
-                            <button class="view">閱覽</button>
-                            <button class="check">修改</button>
-                            <button class="delete">刪除</button>
-                        </div>
+                        <article>
+                            <div class="title">sfjwoef</div>
+                            <div class="set2btnbox">
+                                <button class="view">閱覽</button>
+                                <button class="check">修改</button>
+                                <button class="delete">刪除</button>
+                            </div>
+                        </article>
+                        <hr>
                     </li>
-                    <hr>
                 </ul>
             </div>
             <div class="set3 tac">
                 <h2>新增分類</h2>
                 <div class="settext">
                     <p>輸入分類:</p>
-                    <input type="text" name="" id="" placeholder="請輸入分類名稱">
+                    <input type="text" name="" id="type" placeholder="請輸入分類名稱">
                 </div>
-                <button type="button" class="btn">確認</button>
+                <button type="button" class="btn" onclick="newtype()">確認</button>
             </div>
-            <div class="set4 tac">
+            <div class="set4 tac active">
                 <h2>新增/修改筆記</h2>
-                <div>
-                    <div>
-                        <p>選擇筆記分類:</p>
+                <div class="typebox">
+                    <p>選擇筆記分類:</p>
+                    <select name="" id="">
+                        <option value="">=== 請選擇筆記分類 ===</option>
+                    </select>
+                    <div></div>
+                </div>
+                <div class="inpbox">
+                    <div class="settext">
+                        <div>筆記標題:</div>
+                        <input type="text" name="" id="title" placeholder="請輸入筆記標題">
                     </div>
-                    <div class="">
-                        <select name="" id="">
-                            <option value="">全部</option>
-                        </select>
-                        <select name="" id="">
-                            <option value="">全部</option>
-                        </select>
+                    <div class="settext">
+                        <p>筆記內容:</p>
+                        <textarea name="" id="content" placeholder="請輸入筆記內容"></textarea>
                     </div>
                 </div>
-                <div class="df settext">
-                    <div>筆記標題:</div>
-                    <input type="text" name="" id="" placeholder="請輸入筆記標題">
-                </div>
-                <div class="df settext">
-                    <p>筆記內容:</p>
-                    <textarea name="" id="" placeholder="請輸入筆記內容"></textarea>
-                </div>
-                <button type="button" class="btn">確認</button>
+                <button type="button" class="btn" onclick="newlist()">確認</button>
             </div>
-            <div class="set5 active">
+            <div class="set5">
                 <h2 class="tac">查詢筆記</h2>
                 <div class="settext">
                     <div>輸入筆記標題:</div>
@@ -84,14 +82,16 @@
                     <hr>
                     <ul>
                         <li>
-                            <div>sfjwoef</div>
-                            <div>
-                                <button class="view">閱覽</button>
-                                <button class="check">修改</button>
-                                <button class="delete">刪除</button>
-                            </div>
+                            <article>
+                                <div class="title">sfjwoef</div>
+                                <div class="set2btnbox">
+                                    <button class="view">閱覽</button>
+                                    <button class="check">修改</button>
+                                    <button class="delete">刪除</button>
+                                </div>
+                            </article>
+                            <hr>
                         </li>
-                        <hr>
                     </ul>
                 </div>
             </div>
@@ -99,11 +99,53 @@
     </section>
     <script>
         btns = document.querySelectorAll('.buttonbox > button')
+        let id = 0
+        let newtypes = []
 
-        function leftbtns(pageIndex){
+        function leftbtns(pageIndex) {
             document.querySelector('.active').classList.remove('active')
             document.querySelector('.set' + pageIndex).classList.add('active')
         }
+
+        function newlist() {
+            const notetitle = document.querySelector('#title').value
+            document.querySelector('.set2 > ul').innerHTML +=
+            `
+            <li class="data-id${++id}">
+                <article>
+                    <div class="title">${notetitle}</div>
+                    <div class="set2btnbox">
+                        <button class="view">閱覽</button>
+                        <button class="check">修改</button>
+                        <button class="delete" onclick="deletenote(${id})">刪除</button>
+                    </div>
+                </article>
+                <hr>
+            </li>
+            `
+        }
+
+        function deletenote(id) {
+            const li = document.querySelectorAll(`.data-id${id}`)
+            li.forEach(index => {
+                index.remove()
+            });
+        }
+
+        function newtype(){
+            const inp = document.querySelector('#type')
+            const select = document.querySelectorAll('select')
+            select.forEach((id,index) => {
+                id.innerHTML +=
+                `
+                <option value="">${inp.value}</option>
+                `
+            });
+            newtypes.push(inp.value)
+            inp.value = ""
+        }
+
+
     </script>
 </body>
 </html>
