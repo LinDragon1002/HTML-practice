@@ -169,3 +169,12 @@ textarea {
     cursor: pointer;
     border: none;
 }
+
+.types {
+    border: 1px solid black;
+    border-radius: 10px;
+}
+
+.deletetypes {
+    cursor: pointer;
+}
