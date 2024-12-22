@@ -26,7 +26,7 @@ function deletetypes() {
 
 function newlist() {
     const notetitle = document.querySelector('#title').value
-    const notetypes = document.querySelector('.savetypebox').value
+    const notetypes = document.querySelector('.savetypebox').textContent
     const inp1 = document.querySelector('.inpbox > input')
     const inp2 = document.querySelector('.inpbox > textarea')
     const inp3 = document.querySelector('.savetypebox')

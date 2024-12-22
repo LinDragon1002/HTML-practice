@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 微軟正黑體;
+        }
+
+        .wrapper {
+            margin: 25px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .box {
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            padding: 10px 20px;
+        }
+
+        @media (max-width: 768px) {
+            .wrapper {
+            grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 350px) {
+            .wrapper {
+            grid-template-columns: 1fr;
+            }
+        }
+
+        /* DOM */
+        .slide-box {
+            background: pink;
+            padding: 10px 25px;
+            transition: 0.3s;
+        }
+
+        .mouse-box {
+            width: 100px;
+            height: 100px;
+            background: red;
+        }
+
+        .box1,
+        .box2 {
+            border: 1px solid #000;
+            width: 100px;
+            height: 100px;
+        }
+    </style>
+</head>
+<body>
+    <!-- 滑順向上 -->
+    <button onclick="window.scrollTo(0, 0);" class="top-btn2">往上</button>
+
+    <!-- RWD -->
+    <div class="wrapper">
+        <!-- .box*8>h2{Title $}+p>lorem10 -->
+        <div class="box">
+            <h2>Title 1</h2>
+            <p>
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Magnam,
+            asperiores?
+            </p>
+        </div>
+        <div class="box">
+            <h2>Title 2</h2>
+            <p>
+            Voluptates temporibus officia similique distinctio aspernatur ipsam
+            hic repudiandae nihil?
+            </p>
+        </div>
+        <div class="box">
+            <h2>Title 3</h2>
+            <p>
+            Voluptas quaerat unde rerum nihil dignissimos, velit officia quisquam
+            minima.
+            </p>
+        </div>
+        <div class="box">
+            <h2>Title 4</h2>
+            <p>
+            Officia vel placeat ullam quae architecto. Repellendus deserunt quia
+            aut.
+            </p>
+        </div>
+        <div class="box">
+            <h2>Title 5</h2>
+            <p>
+            Quibusdam, omnis! Iste quam aliquam culpa beatae deserunt inventore
+            porro.
+            </p>
+        </div>
+        <div class="box">
+            <h2>Title 6</h2>
+            <p>
+            Nemo assumenda nihil minus. Eligendi laborum totam voluptatibus
+            explicabo ipsam!
+            </p>
+        </div>
+        <div class="box">
+            <h2>Title 7</h2>
+            <p>
+            Sequi alias necessitatibus ut rerum unde in delectus nihil numquam.
+            </p>
+        </div>
+        <div class="box">
+            <h2>Title 8</h2>
+            <p>
+            Ipsam labore maxime voluptatem officiis dolorem nobis optio in nam!
+            </p>
+        </div>
+    </div>
+
+
+    <!-- <-----------------Q1----------------->
+    <h1 onclick="changeText()">today is a bad day</h1>
+    <h1 id="good" onclick="changeText()">today is a good day</h1>
+
+    <hr />
+    <!-- <-----------------Q2----------------->
+    <div class="slide-box" onclick="slideAction()">
+      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fuga, eaque.
+    </div>
+
+    <hr />
+    <!-- <-----------------Q3----------------->
+    <section>
+      <span class="mouse-text"></span>
+      <div
+        class="mouse-box"
+        onmousedown="onMouseDown()"
+        onmousemove="onMouseMove()"
+        onmouseup="onMouseUp()"
+      ></div>
+    </section>
+    <hr />
+
+    <!-- <-----------------Q4----------------->
+    <section>
+      <span class="drag-text"></span>
+      <div class="box1" ondrop="onDrop(event)" ondragover="allowDrop(event)">
+        <div class="drag-me" draggable="true" ondragstart="onDrag(event)">
+          Drag me
+        </div>
+      </div>
+      <div
+        class="box2"
+        ondrop="onDrop(event)"
+        ondragover="allowDrop(event)"
+      ></div>
+    </section>
+
+    <script>
+      // <-----------------Q1----------------->
+      function changeText() {
+        document.querySelector("h1").textContent = "today is a gay day";
+        document.querySelector("#good").textContent = "today is a gay day";
+      }
+
+      // <-----------------Q2----------------->
+      function slideAction() {
+        const slideBox = document.querySelector(".slide-box");
+        slideBox.style.transform = "translateY(100%)";
+      }
+
+      // <-----------------Q3----------------->
+      const mouseText = document.querySelector(".mouse-text");
+      const mouseBox = document.querySelector(".mouse-box");
+
+      function onMouseDown() {
+        mouseText.textContent = "Mouse Down";
+      }
+      function onMouseMove() {
+        mouseText.textContent = "Mouse Move";
+      }
+      function onMouseUp() {
+        mouseText.textContent = "Mouse Up";
+      }
+
+      // <-----------------Q4----------------->
+      function allowDrop(ev) {
+        ev.preventDefault();
+      }
+      const dragText = document.querySelector(".drag-text");
+      let temp_dom = "";
+      function onDrag(e) {
+        temp_dom = e.target;
+      }
+      function onDrop(e) {
+        e.target.appendChild(temp_dom);
+      }
+    </script>
+</body>
+</html>
