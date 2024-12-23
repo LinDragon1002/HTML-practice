@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>finlly_test_1</title>
+    <style>
+        .image-container img {
+            border: 5px solid #484848;
+            width: 500px;
+            height: 350px;
+            display: block;
+            }
+    </style>
+</head>
+<body>
+    <div class="image-container">
+        <img id="hoverImage" src="./static/ntub1.jpg" alt="Default Image">
+    </div>
+    <script>
+        const image = document.getElementById('hoverImage');
+
+        image.addEventListener('mouseover', () => {
+            image.src = './static/ntub2.jpg';
+        });
+
+        image.addEventListener('mouseout', () => {
+            image.src = './static/ntub3.jpg';
+        });
+    </script>
+</body>
+</html>

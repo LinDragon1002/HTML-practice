@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>finally_test_2</title>
+    <style>
+        .container {
+            position: relative;
+            width: 400px;
+            height: 400px;
+            background: url('static/4.jpg') center/cover no-repeat;
+            margin: 0 auto;
+            border: 2px solid #484848;
+            overflow: hidden;
+        }
+
+        #animatedImage {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            animation: moveAround 8s infinite alternate ease-in-out;
+            cursor: pointer;
+        }
+
+        @keyframes moveAround {
+            0% { top: 0; left: 0; }
+            25% { top: 0; left: 340px; }
+            50% { top: 340px; left: 340px; }
+            75% { top: 340px; left: 0; }
+            100% { top: 0; left: 0; }
+        }
+
+        #animatedImage:hover {
+            animation: transform 2s scale(1.5);
+        }
+    </style>
+</head>
+<body>
+    <div class="container" onmousedown="onMouseDown()" onmouseup="onMouseUp()">
+        <img id="animatedImage" src="./static/5.jpg" alt="Animated Image">
+    </div>
+    <script>
+        const animatedImage = document.getElementById('animatedImage');
+
+        let isPaused = false;
+
+        animatedImage.addEventListener('click', () => {
+            if (isPaused) {
+                animatedImage.style.animationPlayState = 'running';
+            } else {
+                animatedImage.style.animationPlayState = 'paused';
+            }
+            isPaused = !isPaused;
+        });
+
+    </script>
+</body>
+</html>

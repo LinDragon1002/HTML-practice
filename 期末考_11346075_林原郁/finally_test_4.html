@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>finlly_test_4</title>
+    <style>
+        .gallery-container {
+            position: relative;
+            margin: 50px auto 10px auto;
+            overflow: hidden;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            background-color: #f4f4f4;
+            transition: width 0.5s ease-in-out;
+        }
+
+        .gallery {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            width: 100%;
+            height: auto;
+        }
+
+        .gallery-row {
+            display: flex;
+            gap: 10px;
+        }
+
+        .gallery-row img {
+            width: calc(25% - 10px); /* Default 4 images per row */
+            height: auto;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .gallery-row img:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 2rem;
+            color: #333;
+            background: rgba(255, 255, 255, 0.8);
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+        }
+
+        .arrow.left {
+            left: 10px;
+        }
+
+        .arrow.right {
+            right: 10px;
+        }
+
+        .arrow:disabled {
+            display: none;
+        }
+
+        .dot-container {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            background: #ddd;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        .dot.active {
+            background: #333;
+        }
+
+        @media screen and (max-width: 768px) {
+            .gallery-row img {
+                width: calc(50% - 10px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="gallery-container">
+        <button class="arrow left" id="leftArrow">&lt;</button>
+        <div class="gallery">
+            <div class="gallery-row"></div>
+        </div>
+        <button class="arrow right" id="rightArrow">&gt;</button>
+    </div>
+    <div class="dot-container" id="dotContainer"></div>
+    <script>
+        const imageSources = Array.from({ length: 13 }, (_, i) => `static/${21 + i}.jpg`);
+
+        const galleryRow = document.querySelector('.gallery-row');
+        const galleryContainer = document.querySelector('.gallery-container');
+        const leftArrow = document.getElementById('leftArrow');
+        const rightArrow = document.getElementById('rightArrow');
+        const dotContainer = document.getElementById('dotContainer');
+
+        let imagesPerGroup = window.innerWidth < 768 ? 2 : 4;
+        let currentGroup = 0;
+        let totalGroups = Math.ceil(imageSources.length / imagesPerGroup);
+
+        function updateContainerWidth() {
+            const imageWidth = 200;
+            const gapWidth = 10 * (imagesPerGroup - 1);
+            galleryContainer.style.width = `${imagesPerGroup * imageWidth + gapWidth}px`;
+        }
+
+        function renderGallery() {
+            galleryRow.innerHTML = '';
+            const startIndex = currentGroup * imagesPerGroup;
+            const endIndex = startIndex + imagesPerGroup;
+            const currentImages = imageSources.slice(startIndex, endIndex);
+
+            currentImages.forEach(src => {
+                const img = document.createElement('img');
+                img.src = src;
+                galleryRow.appendChild(img);
+            });
+
+            leftArrow.disabled = currentGroup === 0;
+            rightArrow.disabled = currentGroup === totalGroups - 1;
+
+            updateDots();
+            updateContainerWidth();
+        }
+
+        function createDots() {
+            dotContainer.innerHTML = '';
+            for (let i = 0; i < totalGroups; i++) {
+                const dot = document.createElement('div');
+                dot.classList.add('dot');
+                if (i === currentGroup) {
+                    dot.classList.add('active');
+                }
+                dot.addEventListener('click', () => {
+                    currentGroup = i;
+                    renderGallery();
+                });
+                dotContainer.appendChild(dot);
+            }
+        }
+
+        function updateDots() {
+            const dots = document.querySelectorAll('.dot');
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentGroup);
+            });
+        }
+
+        function adjustGalleryForScreenSize() {
+            imagesPerGroup = window.innerWidth < 768 ? 2 : 4;
+            totalGroups = Math.ceil(imageSources.length / imagesPerGroup);
+            currentGroup = Math.min(currentGroup, totalGroups - 1);
+            createDots();
+            renderGallery();
+        }
+
+        leftArrow.addEventListener('click', () => {
+            if (currentGroup > 0) {
+                currentGroup--;
+                renderGallery();
+            }
+        });
+
+        rightArrow.addEventListener('click', () => {
+            if (currentGroup < totalGroups - 1) {
+                currentGroup++;
+                renderGallery();
+            }
+        });
+
+        window.addEventListener('resize', adjustGalleryForScreenSize);
+        adjustGalleryForScreenSize();
+    </script>
+</body>
+</html>

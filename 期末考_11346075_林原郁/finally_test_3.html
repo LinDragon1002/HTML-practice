@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>finlly_test_3</title>
+    <style>
+        .carousel-container {
+            position: relative;
+            width: 600px;
+            height: auto;
+            margin: 50px auto 10px auto;
+            overflow: hidden;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            background-color: #f4f4f4;
+        }
+
+        .carousel {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            width: 100%;
+            height: 100%;
+        }
+
+        .carousel-image {
+            width: 100%;
+            height: 100%;
+            flex-shrink: 0;
+            display: none;
+            background-size:cover;
+        }
+
+        .carousel-image.active {
+            display: block;
+        }
+
+
+        .arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 2rem;
+            color: #333;
+            background: rgba(255, 255, 255, 0.8);
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+        }
+
+        .arrow.left {
+            left: 10px;
+        }
+
+        .arrow.right {
+            right: 10px;
+        }
+
+        .arrow:disabled {
+            display: none;
+        }
+
+
+        .dot-container {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            background: #ddd;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        .dot.active {
+            background: #333;
+        }
+
+        #scrollToTopBtn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background-color: #333;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            display: none; /* Hidden by default */
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s ease;
+        }
+
+        #scrollToTopBtn:hover {
+            background-color: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class="carousel-container">
+        <button class="arrow left" id="leftArrow">&lt;</button>
+        <div class="carousel">
+            <img src="static/6.jpg" alt="Image 1" class="carousel-image active">
+            <img src="static/7.jpg" alt="Image 2" class="carousel-image">
+            <img src="static/8.jpg" alt="Image 3" class="carousel-image">
+            <img src="static/9.jpg" alt="Image 4" class="carousel-image">
+            <img src="static/10.jpg" alt="Image 5" class="carousel-image">
+            <img src="static/11.jpg" alt="Image 6" class="carousel-image">
+        </div>
+        <button class="arrow right" id="rightArrow">&gt;</button>
+    </div>
+    <div class="dot-container" id="dotContainer"></div>
+    <div style="height: 2000px;">
+    </div>
+    <button id="scrollToTopBtn">TOP</button>
+    <script>
+        const carouselImages = document.querySelectorAll('.carousel-image');
+        const leftArrow = document.getElementById('leftArrow');
+        const rightArrow = document.getElementById('rightArrow');
+        const dotContainer = document.getElementById('dotContainer');
+
+        let currentIndex = 0;
+
+        function updateCarousel() {
+            carouselImages.forEach((img, index) => {
+                img.classList.toggle('active', index === currentIndex);
+            });
+
+            leftArrow.disabled = currentIndex === 0;
+            rightArrow.disabled = currentIndex === carouselImages.length - 1;
+
+            Array.from(dotContainer.children).forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentIndex);
+            });
+        }
+
+        carouselImages.forEach((_, index) => {
+            const dot = document.createElement('div');
+            dot.classList.add('dot');
+            dot.addEventListener('click', () => {
+                currentIndex = index;
+                updateCarousel();
+            });
+            dotContainer.appendChild(dot);
+        });
+
+
+        leftArrow.addEventListener('click', () => {
+            if (currentIndex > 0) {
+                currentIndex--;
+                updateCarousel();
+            }
+        });
+
+        rightArrow.addEventListener('click', () => {
+            if (currentIndex < carouselImages.length - 1) {
+                currentIndex++;
+                updateCarousel();
+            }
+        });
+
+        updateCarousel();
+
+        const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 200) {
+                scrollToTopBtn.style.display = 'flex';
+            } else {
+                scrollToTopBtn.style.display = 'none';
+            }
+        });
+
+        scrollToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    </script>
+</body>
+</html>
