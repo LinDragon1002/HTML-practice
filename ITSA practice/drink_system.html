@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>飲料訂購系統</title>
+    <link rel="stylesheet" href="./drink_system.css">
+</head>
+<body>
+    <h2>來點什麼...</h2>
+    <div class="choose">
+        <table>
+            <tr>
+                <td></td>
+                <td>品名</td>
+                <td>容量</td>
+                <td>單價</td>
+                <td>數量</td>
+                <td>金額</td>
+                <td>溫度</td>
+                <td>甜度</td>
+                <td>訂購人</td>
+            </tr>
+
+            <tr>
+                <td><button type="button" onclick="sumbit()" id="check">確認</button></td>
+                <td>
+                    <select name="" class="name">
+                        <option value="">請選擇</option>
+                        <option value="">紅茶</option>
+                        <option value="">奶茶</option>
+                        <option value="">綠茶</option>
+                        <option value="">紅茶拿鐵</option>
+                    </select></td>
+                <td>
+                    <select name="" class="size">
+                        <option value="">請選擇</option>
+                        <option value="">大杯</option>
+                        <option value="">中杯</option>
+                        <option value="">小杯</option>
+                    </select></td>
+                <td class="price">0</td>
+                <td class="count"><input type="text" name="" id=""></td>
+                <td class="total">0</td>
+                <td>
+                    <select name="" class="temp">
+                        <option value="">請選擇</option>
+                        <option value=""></option>
+                        <option value=""></option>
+                        <option value=""></option>
+                        <option value=""></option>
+                    </select></td>
+                <td>
+                    <select name="" class="sweet">
+                        <option value="">請選擇</option>
+                        <option value=""></option>
+                        <option value=""></option>
+                        <option value=""></option>
+                        <option value=""></option>
+                    </select></td>
+                <td class="person"><input type="text" name="" id="" placeholder="誰點的"></td>
+            </tr>
+        </table>
+    </div>
+    <div class="show">
+        <table>
+            <tr>
+                <td></td>
+                <td>品名</td>
+                <td>容量</td>
+                <td>單價</td>
+                <td>數量</td>
+                <td>金額</td>
+                <td>溫度</td>
+                <td>甜度</td>
+                <td>訂購人</td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" name="" id=""></td>
+                <td class="name"></td>
+                <td class="size"></td>
+                <td class="price"></td>
+                <td class="count"></td>
+                <td class="total"></td>
+                <td class="temp"></td>
+                <td class="sweet"></td>
+                <td class="person"></td>
+            </tr>
+        </table>
+    </div>
+    <script src="./drink_system.js"></script>
+</body>
+</html>
