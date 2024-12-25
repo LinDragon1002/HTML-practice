@@ -20,17 +20,17 @@
                 <div>
                     <h1>筆記清單</h1>
                     <h3>分類：</h3>
-                    <select name="" id="" onclick="">
+                    <select name="" id="" class="set2types">
                         <option value="">全部</option>
                     </select>
                 </div>
                 <hr>
                 <ul>
-                    <li class="data-id0 All">
+                    <li class="data-id0 全部">
                         <article>
                             <div class="title">sfjwoef</div>
                             <div class="set2btnbox">
-                                <button class="view">閱覽</button>
+                                <button class="view" onclick="view()">閱覽</button>
                                 <button class="check">修改</button>
                                 <button class="delete" onclick="deletenote(0)">刪除</button>
                             </div>
@@ -83,6 +83,13 @@
                     <hr>
                     <ul></ul>
                 </div>
+            </div>
+        </div>
+        <div id="modal" class="modal">
+            <div class="modal-content">
+                <button id="closeModalBtn" class="close-btn" onclick="closeModel()">&times;</button>
+                <h2 class="modal-title"></h2>
+                <p class="modal-p"></p>
             </div>
         </div>
     </section>

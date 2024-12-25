@@ -173,8 +173,41 @@ textarea {
 .types {
     border: 1px solid black;
     border-radius: 10px;
+    cursor: pointer;
 }
 
-.deletetypes {
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Black background with opacity */
+    z-index: 1000; /* Ensure it is above other elements */
+    justify-content: center; /* Center content horizontally */
+    align-items: center; /* Center content vertically */
+}
+
+/* Modal content box */
+.modal-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    width: 300px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Close button */
+.close-btn {
+    display: flex;
+    font-size: 1.5rem;
+    color: #333;
     cursor: pointer;
+    font-weight: bold;
+}
+
+.content {
+    display: none;
 }
