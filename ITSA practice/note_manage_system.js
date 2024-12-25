@@ -6,6 +6,9 @@ let typeid = 0
 let newtypes = []
 let nowusetypes = []
 let allli = []
+const inp1 = document.querySelector('.inpbox input')
+const inp2 = document.querySelector('.inpbox textarea')
+const inp3 = document.querySelector('.savetypebox')
 
 function leftbtns(pageIndex) {
     document.querySelector('.active').classList.remove('active')
@@ -39,9 +42,6 @@ function deletetypes(typeid) {
 
 function newlist() {
     const notetitle = document.querySelector('#title').value
-    const inp1 = document.querySelector('.inpbox input')
-    const inp2 = document.querySelector('.inpbox textarea')
-    const inp3 = document.querySelector('.savetypebox')
     document.querySelector('.set2 > ul').innerHTML +=
     `
     <li class="data-id${++id} 全部 ${nowusetypes.toString().split(',').join(' ')}">
@@ -50,7 +50,7 @@ function newlist() {
             <div class="content">${inp2.value}</div>
             <div class="set2btnbox">
                 <button class="view" onclick="view(${id})">閱覽</button>
-                <button class="check" onclick="leftbtns(4)">修改</button>
+                <button class="check" onclick="leftbtns(4),correctlist(${id})">修改</button>
                 <button class="delete" onclick="deletenote(${id})">刪除</button>
             </div>
         </article>
@@ -84,16 +84,35 @@ function newtype(){
 }
 
 function inquiretitle(){
-    const title = document.querySelectorAll('.title')
+    const title = document.querySelector('#searchtitle').value
     const viewul = document.querySelector('.checkbox > ul')
-    title.forEach(name => {
-        viewul.innerHTML += allli.find(index => index.querySelector('.title').textContent === name.textContent).outerHTML
+    viewul.innerHTML = ""
+    allli.forEach((name,index) => {
+        if (name.querySelector('.title').textContent.includes(title)) {
+            console.log(name)
+            viewul.innerHTML +=
+            `
+            <li class="${name.classList.toString().split(' ').join(' ')}">
+                <article>
+                    <div class="title">${name.querySelector('.title').textContent}</div>
+                    <div class="content">${name.querySelector('.content').textContent}</div>
+                    <div class="set2btnbox">
+                        <button class="view" onclick="view(${index+1})">閱覽</button>
+                        <button class="check" onclick="leftbtns(4),correctlist(${index+1})">修改</button>
+                        <button class="delete" onclick="deletenote(${index+1})">刪除</button>
+                    </div>
+                </article>
+                <hr>
+            </li>
+            `
+        }
     })
 }
 
 function list() {
     document.querySelector('.set2types').options[0].selected = true
     const viewlist = document.querySelector('.set2 > ul')
+    viewlist.innerHTML = ""
     allli.forEach(index => {
         viewlist.append(index)
     })
@@ -113,4 +132,20 @@ function closeModel() {
     modal.style.display = 'none';
 }
 
-
+function correctlist(id) {
+    const listtitle = allli.find(index => index.classList.contains(`data-id${id}`)).querySelector('.title')
+    const listcontent = allli.find(index => index.classList.contains(`data-id${id}`)).querySelector('.content')
+    const types = allli.find(index => index.classList.contains(`data-id${id}`)).classList.toString().split(' ')
+    inp1.value = listtitle.textContent
+    inp2.value = listcontent.textContent
+    types.forEach(type => {
+        if (newtypes.includes(type)) {
+            inp3.innerHTML +=
+            `
+            <div class="types deletetypes${++typeid}">　${type}　<span onclick="deletetypes(${typeid})">x　</span></div>
+            `
+            nowusetypes.push(type)
+        }
+    })
+    deletenote(id)
+}
