@@ -37,6 +37,11 @@ selectElement.addEventListener('change', () => {
 
 function deletetypes(typeid) {
     const deletetypes = document.querySelector(`.deletetypes${typeid}`)
+    nowusetypes.forEach((type,index) => {
+        if (type == deletetypes.textContent.split('　')[1]) {
+            nowusetypes.pop(index)
+        }
+    });
     deletetypes.remove()
 }
 
@@ -66,8 +71,10 @@ function newlist() {
 }
 
 function deletenote(id) {
-    allli.find(index => index.classList.contains(`data-id${id}`)).remove()
-    allli = allli.filter(index => !index.classList.contains(`data-id${id}`))
+    const deleteli = allli.find(li => li.classList.contains(`data-id${id}`))
+    deleteli.remove()
+    allli = allli.filter(li => !li.classList.contains(`data-id${id}`))
+    inquiretitle()
 }
 
 function newtype(){
@@ -87,19 +94,19 @@ function inquiretitle(){
     const title = document.querySelector('#searchtitle').value
     const viewul = document.querySelector('.checkbox > ul')
     viewul.innerHTML = ""
-    allli.forEach((name,index) => {
-        if (name.querySelector('.title').textContent.includes(title)) {
-            console.log(name)
+    allli.forEach(li => {
+        if (li.querySelector('.title').textContent.includes(title)) {
+            console.log(li.classList)
             viewul.innerHTML +=
             `
-            <li class="${name.classList.toString().split(' ').join(' ')}">
+            <li class="${li.classList.toString().split(' ').join(' ')}">
                 <article>
-                    <div class="title">${name.querySelector('.title').textContent}</div>
-                    <div class="content">${name.querySelector('.content').textContent}</div>
+                    <div class="title">${li.querySelector('.title').textContent}</div>
+                    <div class="content">${li.querySelector('.content').textContent}</div>
                     <div class="set2btnbox">
-                        <button class="view" onclick="view(${index+1})">閱覽</button>
-                        <button class="check" onclick="leftbtns(4),correctlist(${index+1})">修改</button>
-                        <button class="delete" onclick="deletenote(${index+1})">刪除</button>
+                        <button class="view" onclick="view(${li.classList[0].slice(7)})">閱覽</button>
+                        <button class="check" onclick="leftbtns(4),correctlist(${li.classList[0].slice(7)})">修改</button>
+                        <button class="delete" onclick="deletenote(${li.classList[0].slice(7)})">刪除</button>
                     </div>
                 </article>
                 <hr>
