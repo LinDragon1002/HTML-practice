@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        main {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(3, 1fr);
+            justify-content: center;
+            align-items: center;
+            height: 50vh;
+            width: 50vw;
+            gap : 10px;
+        }
+        main div {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2rem;
+            width: 100%;
+            height: 100%;
+            background-color: #839eff;
+            cursor: pointer;
+        }
+        .card {
+            display: flex;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        .card-content {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            width: 300px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="card-content">
+            <h1>選擇你的符號</h1>
+            <hr>
+            <div class="btnbox">
+                <button id="cross" onclick="clickcross()">X</button>
+                <button id="circle" onclick="clickcircle()">O</button>
+            </div>
+        </div>
+    </div>
+    <main>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </main>
+
+
+    <script>
+        const circle = document.getElementById('circle');
+        const cross = document.getElementById('cross');
+        const card = document.querySelector('.card');
+        const cardContent = document.querySelector('.card-content');
+        const main = document.querySelector('main');
+        const divs = main.querySelectorAll('div');
+
+        let player = '';
+        let computer = '';
+        let ans = [['','',''],['','',''],['','','']]
+        let round = 0;
+
+        function clickcircle() {
+            player = 'O';
+            computer = 'X';
+            closeCard();
+        }
+        function clickcross() {
+            player = 'X';
+            computer = 'O';
+            closeCard();
+        }
+        function closeCard() {
+            card.style.display = 'none';
+        }
+        cardContent.addEventListener('click', (event) => {
+            event.stopPropagation();
+        });
+        function random() {
+            let randomnub = Math.floor(Math.random() * 9)
+            return randomnub
+        }
+        function winner() {
+            for (let i=0; i < 4; i++){
+                if(ans[i][0]+ans[i][1]+ans[i][2] == 3 || ans[0][i]+ans[1][i]+ans[2][i] == 3 ) {
+                    alert('玩家獲勝')
+                    break
+                }else if (ans[i][0]+ans[i][1]+ans[i][2] == 6 || ans[0][i]+ans[1][i]+ans[2][i] == 6 ) {
+                    alert('電腦獲勝')
+                    break
+                }else if (ans[0][0]+ans[1][1]+ans[2][2] == 3 || ans[0][2] == ans[1][1] == ans[2][0] == 3) {
+                    alert('玩家獲勝')
+                    break
+                }else if (ans[0][0]+ans[1][1]+ans[2][2] == 6 || ans[0][2] == ans[1][1] == ans[2][0] == 6) {
+                    alert('電腦獲勝')
+                    break
+                }else if (round == 5){
+                    alert('平局')
+                    break
+                }
+            }
+        }
+
+        divs.forEach((div,index) => {
+            div.addEventListener('click', () => {
+                ++round
+                ans[parseInt(index/3)][parseInt(index%3)] = 1
+                div.innerHTML = player;
+                while (true) {
+                    let temp = random()
+                    console.log(temp,ans)
+                    if (ans[parseInt(temp/3)][parseInt(temp%3)] === '' && round <= 4){
+                        console.log(parseInt(temp/3),parseInt(temp%3))
+                        divs[temp].innerHTML = computer
+                        ans[parseInt(temp/3)][parseInt(temp%3)] = 2
+                        break
+                    }else if (round == 5){
+                        break
+                    }
+                }
+                if (round > 1){
+                    winner()
+                    console.log(round)
+                }
+            });
+        });
+
+
+
+    </script>
+</body>
+</html>
