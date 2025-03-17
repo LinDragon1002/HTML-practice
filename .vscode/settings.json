@@ -1,0 +1,17 @@
+{
+    "[yaml]": {
+        "editor.tabSize": 4
+    },
+    "python.analysis.autoImportCompletions": true,
+    "python.analysis.typeCheckingMode": "basic",
+
+    "terminal.integrated.profiles.windows": {
+        "PowerShell": {
+        "path": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+        "args": ["-NoProfile"]
+        }
+    },
+    "terminal.integrated.defaultProfile.windows": "PowerShell"
+
+
+}
